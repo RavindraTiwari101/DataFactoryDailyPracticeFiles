@@ -1,0 +1,17 @@
+{
+	"name": "ds_azuresqlserverdb_claim",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuresql_clintrail",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "raw_claim_test"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

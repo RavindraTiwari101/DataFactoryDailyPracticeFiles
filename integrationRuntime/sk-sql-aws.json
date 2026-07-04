@@ -1,0 +1,6 @@
+{
+	"name": "sk-sql-aws",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

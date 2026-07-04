@@ -1,0 +1,22 @@
+{
+	"name": "ls_sqlserver_healthconnect_raw",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "In-premise SQL Server healthconnect",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "localhost\\SQLEXPRESS",
+			"database": "dev_HealthConnect_raw",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "Windows",
+			"userName": "DESKTOP-TL1QLUE\\Aarav",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhNWFjNjM0ZC03M2RkLTQxNTctODg3Ny05YWU2ZmQ5MDk2ZDQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "shir-local-computer",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
