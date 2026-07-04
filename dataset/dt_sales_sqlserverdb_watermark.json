@@ -1,0 +1,16 @@
+{
+	"name": "dt_sales_sqlserverdb_watermark",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver_healthconnect_raw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "sales_watermark"
+		}
+	}
+}
