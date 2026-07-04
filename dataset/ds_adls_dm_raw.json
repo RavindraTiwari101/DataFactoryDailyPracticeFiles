@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "raw/DM",
+				"fileName": "feb_customer_FY2025.csv",
+				"folderPath": "sourceFiles/DM",
 				"fileSystem": "cr-clintrail"
 			},
 			"columnDelimiter": ",",
