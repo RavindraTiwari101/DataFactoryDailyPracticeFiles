@@ -1,0 +1,202 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-clintrial-dev1"
+		},
+		"ls_adls_clintrail_dev28June_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_clintrail_dev28June'"
+		},
+		"ls_adls_dm_gen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_dm_gen2'"
+		},
+		"ls_adls_sqlserver_region_30june_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_sqlserver_region_30june'"
+		},
+		"ls_aws_s3_sqlserver_secretAccessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'secretAccessKey' of 'ls_aws_s3_sqlserver'"
+		},
+		"ls_azuresql_clintrail_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_azuresql_clintrail'"
+		},
+		"ls_sqlserver_TSQLBasicPractice_dbo_patient_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlserver_TSQLBasicPractice_dbo_patient'"
+		},
+		"ls_sqlserver_healthconnect_raw_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlserver_healthconnect_raw'"
+		},
+		"ls_adls_clintrail_dev28June_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://stclintrialdev1.dfs.core.windows.net/"
+		},
+		"ls_adls_dm_gen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://stclintrialdev1.dfs.core.windows.net/"
+		},
+		"ls_adls_sqlserver_region_30june_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://stclintrialdev1.dfs.core.windows.net/"
+		},
+		"ls_aws_s3_sqlserver_properties_typeProperties_accessKeyId": {
+			"type": "string",
+			"defaultValue": "AKIATU46MISFXVQYGI5W"
+		},
+		"ls_azuresql_clintrail_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-clintrial-dev1.database.windows.net"
+		},
+		"ls_azuresql_clintrail_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sqldb-clintrial-dev1"
+		},
+		"ls_azuresql_clintrail_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "CloudSA5e1dc52c"
+		},
+		"ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TSQLBasicPractice"
+		},
+		"ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-TL1QLUE\\Aarav"
+		},
+		"ls_sqlserver_healthconnect_raw_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_healthconnect_raw_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "dev_HealthConnect_raw"
+		},
+		"ls_sqlserver_healthconnect_raw_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-TL1QLUE\\Aarav"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-clintrial-dev1_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_adls_clintrail_dev28June_accountKey": {
+						"value": "[parameters('ls_adls_clintrail_dev28June_accountKey')]"
+					},
+					"ls_adls_dm_gen2_accountKey": {
+						"value": "[parameters('ls_adls_dm_gen2_accountKey')]"
+					},
+					"ls_adls_sqlserver_region_30june_accountKey": {
+						"value": "[parameters('ls_adls_sqlserver_region_30june_accountKey')]"
+					},
+					"ls_aws_s3_sqlserver_secretAccessKey": {
+						"value": "[parameters('ls_aws_s3_sqlserver_secretAccessKey')]"
+					},
+					"ls_azuresql_clintrail_password": {
+						"value": "[parameters('ls_azuresql_clintrail_password')]"
+					},
+					"ls_sqlserver_TSQLBasicPractice_dbo_patient_password": {
+						"value": "[parameters('ls_sqlserver_TSQLBasicPractice_dbo_patient_password')]"
+					},
+					"ls_adls_clintrail_dev28June_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_clintrail_dev28June_properties_typeProperties_url')]"
+					},
+					"ls_adls_dm_gen2_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_dm_gen2_properties_typeProperties_url')]"
+					},
+					"ls_adls_sqlserver_region_30june_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_sqlserver_region_30june_properties_typeProperties_url')]"
+					},
+					"ls_aws_s3_sqlserver_properties_typeProperties_accessKeyId": {
+						"value": "[parameters('ls_aws_s3_sqlserver_properties_typeProperties_accessKeyId')]"
+					},
+					"ls_azuresql_clintrail_properties_typeProperties_server": {
+						"value": "[parameters('ls_azuresql_clintrail_properties_typeProperties_server')]"
+					},
+					"ls_azuresql_clintrail_properties_typeProperties_database": {
+						"value": "[parameters('ls_azuresql_clintrail_properties_typeProperties_database')]"
+					},
+					"ls_azuresql_clintrail_properties_typeProperties_userName": {
+						"value": "[parameters('ls_azuresql_clintrail_properties_typeProperties_userName')]"
+					},
+					"ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_server')]"
+					},
+					"ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_database')]"
+					},
+					"ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-clintrial-dev1_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_sqlserver_healthconnect_raw_password": {
+						"value": "[parameters('ls_sqlserver_healthconnect_raw_password')]"
+					},
+					"ls_sqlserver_healthconnect_raw_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlserver_healthconnect_raw_properties_typeProperties_server')]"
+					},
+					"ls_sqlserver_healthconnect_raw_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlserver_healthconnect_raw_properties_typeProperties_database')]"
+					},
+					"ls_sqlserver_healthconnect_raw_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlserver_healthconnect_raw_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-clintrial-dev1_ArmTemplate_0')]"
+			]
+		}
+	]
+}

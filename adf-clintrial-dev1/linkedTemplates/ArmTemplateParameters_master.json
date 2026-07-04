@@ -1,0 +1,75 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-clintrial-dev1"
+		},
+		"ls_adls_clintrail_dev28June_accountKey": {
+			"value": ""
+		},
+		"ls_adls_dm_gen2_accountKey": {
+			"value": ""
+		},
+		"ls_adls_sqlserver_region_30june_accountKey": {
+			"value": ""
+		},
+		"ls_aws_s3_sqlserver_secretAccessKey": {
+			"value": ""
+		},
+		"ls_azuresql_clintrail_password": {
+			"value": ""
+		},
+		"ls_sqlserver_TSQLBasicPractice_dbo_patient_password": {
+			"value": ""
+		},
+		"ls_sqlserver_healthconnect_raw_password": {
+			"value": ""
+		},
+		"ls_adls_clintrail_dev28June_properties_typeProperties_url": {
+			"value": "https://stclintrialdev1.dfs.core.windows.net/"
+		},
+		"ls_adls_dm_gen2_properties_typeProperties_url": {
+			"value": "https://stclintrialdev1.dfs.core.windows.net/"
+		},
+		"ls_adls_sqlserver_region_30june_properties_typeProperties_url": {
+			"value": "https://stclintrialdev1.dfs.core.windows.net/"
+		},
+		"ls_aws_s3_sqlserver_properties_typeProperties_accessKeyId": {
+			"value": "AKIATU46MISFXVQYGI5W"
+		},
+		"ls_azuresql_clintrail_properties_typeProperties_server": {
+			"value": "sql-clintrial-dev1.database.windows.net"
+		},
+		"ls_azuresql_clintrail_properties_typeProperties_database": {
+			"value": "sqldb-clintrial-dev1"
+		},
+		"ls_azuresql_clintrail_properties_typeProperties_userName": {
+			"value": "CloudSA5e1dc52c"
+		},
+		"ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_database": {
+			"value": "TSQLBasicPractice"
+		},
+		"ls_sqlserver_TSQLBasicPractice_dbo_patient_properties_typeProperties_userName": {
+			"value": "DESKTOP-TL1QLUE\\Aarav"
+		},
+		"ls_sqlserver_healthconnect_raw_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_healthconnect_raw_properties_typeProperties_database": {
+			"value": "dev_HealthConnect_raw"
+		},
+		"ls_sqlserver_healthconnect_raw_properties_typeProperties_userName": {
+			"value": "DESKTOP-TL1QLUE\\Aarav"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
