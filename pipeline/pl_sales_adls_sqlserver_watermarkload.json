@@ -52,9 +52,14 @@
 					},
 					"sink": {
 						"type": "SqlServerSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false,
-						"tableOption": "autoCreate"
+						"writeBehavior": "upsert",
+						"upsertSettings": {
+							"useTempDB": true,
+							"keys": [
+								"customer_id"
+							]
+						},
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
 					"translator": {
