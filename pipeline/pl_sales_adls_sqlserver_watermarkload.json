@@ -33,6 +33,10 @@
 									"value": "@utcNow()",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "Plan Type",
+								"value": "Prepaid"
 							}
 						],
 						"storeSettings": {
