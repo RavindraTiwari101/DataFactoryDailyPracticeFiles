@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "aws_product"
+			"table": "raw_product_AWS"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
