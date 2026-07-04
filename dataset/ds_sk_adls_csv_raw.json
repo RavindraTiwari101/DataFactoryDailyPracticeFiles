@@ -1,0 +1,19 @@
+{
+	"name": "ds_sk_adls_csv_raw",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_clintrail_dev28June",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "raw/DM",
+				"fileSystem": "cr-clintrail"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "ds_azuresql_clintrial",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuresql_clintrail",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "raw",
+			"table": "sales_20260623"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

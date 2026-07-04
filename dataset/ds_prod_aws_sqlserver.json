@@ -1,0 +1,17 @@
+{
+	"name": "ds_prod_aws_sqlserver",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver_healthconnect_raw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "aws_product"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
