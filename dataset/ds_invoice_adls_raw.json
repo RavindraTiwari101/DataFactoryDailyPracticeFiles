@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Sales30June.csv",
-				"folderPath": "azure_sqldb_data",
+				"fileName": "Feb_test.csv",
+				"folderPath": "raw/DM",
 				"fileSystem": "cr-clintrail"
 			},
 			"columnDelimiter": ",",
