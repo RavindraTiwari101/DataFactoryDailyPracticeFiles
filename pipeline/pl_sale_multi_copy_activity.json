@@ -83,7 +83,8 @@
 					"sink": {
 						"type": "SqlServerSink",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate"
 					},
 					"enableStaging": false,
 					"translator": {
@@ -103,7 +104,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_sales_sqlserver_copymulti",
+						"referenceName": "ds_sqlserver_raw_patient",
 						"type": "DatasetReference"
 					}
 				]
