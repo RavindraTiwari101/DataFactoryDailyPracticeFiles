@@ -7,12 +7,12 @@
 		"type": "SqlServer",
 		"typeProperties": {
 			"server": "localhost\\SQLEXPRESS",
-			"database": "dev_HealthConnect_cleansed",
+			"database": "dev_HealthConnect_raw",
 			"encrypt": "optional",
 			"trustServerCertificate": false,
 			"authenticationType": "Windows",
 			"userName": "DESKTOP-TL1QLUE\\Aarav",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlNjQ3ZDgwOC05MDRmLTQ2ZmYtOWMyYi1iMDQxNzQ0N2M4OGUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyNTgyZDBkOC03MGFiLTQ1ZjQtOTAwYy04MzUwODgyNTQ1ODYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "shir-local-computer",
