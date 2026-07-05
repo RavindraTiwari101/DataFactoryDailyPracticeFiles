@@ -44,7 +44,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "raw_patients_yyyymmdd"
+			"table": "clean_salex"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
