@@ -44,7 +44,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "clean_salex"
+			"table": "metadata_sales"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
