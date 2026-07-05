@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "raw",
+				"fileName": "MMaarch.csv",
+				"folderPath": "raw/DM",
 				"fileSystem": "cr-clintrail"
 			},
 			"columnDelimiter": ",",
