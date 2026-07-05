@@ -6,6 +6,8 @@
 				"name": "Copy_getmetadata_sales_copy_activity",
 				"description": "pl_getmetadata_sales_copy_activity",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
