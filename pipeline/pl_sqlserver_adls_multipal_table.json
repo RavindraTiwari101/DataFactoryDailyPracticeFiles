@@ -54,6 +54,15 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "ForEachtest",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"isSequential": false
+				}
 			}
 		],
 		"folder": {
