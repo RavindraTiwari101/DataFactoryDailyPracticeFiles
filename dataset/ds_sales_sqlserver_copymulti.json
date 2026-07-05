@@ -9,7 +9,7 @@
 		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "cleansed",
+			"schema": "dbo",
 			"table": "Clean_sales"
 		}
 	}
