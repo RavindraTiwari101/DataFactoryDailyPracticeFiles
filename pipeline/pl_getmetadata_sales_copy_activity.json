@@ -51,6 +51,18 @@
 						"value": "@and(\n    activity('get_metadata_sales_info').output.exists,\n    greater(activity('get_metadata_sales_info').output.size,0)\n\n)",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "Fail_ifcondition",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "sales_activity fail",
+								"errorCode": "5001"
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "Copy_sales_data_ifcondition",
