@@ -44,7 +44,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "metadata_sales"
+			"table": "raw_metadataifcond"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
