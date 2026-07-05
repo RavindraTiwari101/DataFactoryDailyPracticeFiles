@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "IntelliBI_API.csv",
-				"folderPath": "raw/DM",
+				"fileName": "sales_20260623.csv",
+				"folderPath": "sourceFiles/sales",
 				"fileSystem": "cr-clintrail"
 			},
 			"columnDelimiter": ",",
