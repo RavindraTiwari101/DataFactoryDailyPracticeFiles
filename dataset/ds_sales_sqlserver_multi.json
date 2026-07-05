@@ -1,0 +1,12 @@
+{
+	"name": "ds_sales_sqlserver_multi",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver_healthconnect_raw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
