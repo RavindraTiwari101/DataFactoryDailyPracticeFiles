@@ -1,0 +1,16 @@
+{
+	"name": "ds_sales_sqlserver_copymulti",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver_healthconnect_raw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "cleansed",
+			"table": "Clean_sales"
+		}
+	}
+}
