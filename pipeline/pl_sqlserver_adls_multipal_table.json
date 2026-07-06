@@ -57,13 +57,10 @@
 				]
 			},
 			{
-				"name": "ForEachtest",
+				"name": "ForEachalltable",
 				"type": "ForEach",
 				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"isSequential": false
-				}
+				"userProperties": []
 			}
 		],
 		"folder": {
