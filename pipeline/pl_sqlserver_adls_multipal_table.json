@@ -24,7 +24,8 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -66,7 +67,7 @@
 			}
 		],
 		"folder": {
-			"name": "19th June For Each and Lookup Activity"
+			"name": "20th June For Each and Lookup Activity"
 		},
 		"annotations": []
 	}
