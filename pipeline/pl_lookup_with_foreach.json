@@ -42,7 +42,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup_lookup_with_foreach_sqlserver_raw').output.valueactivity('Lookup_lookup_with_foreach_sqlserver_raw').output.value",
+						"value": "@activity('Lookup_lookup_with_foreach_sqlserver_raw').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -93,7 +93,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"pTableName": {
-											"value": "@item().pTableName",
+											"value": "@item().table_name\r\n",
 											"type": "Expression"
 										},
 										"pSchemaName": {
