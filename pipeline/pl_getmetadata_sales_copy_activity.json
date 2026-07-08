@@ -27,6 +27,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -122,7 +123,7 @@
 			}
 		],
 		"folder": {
-			"name": "18 June Multipal activity"
+			"name": "My Practice/18 June Multipal activity"
 		},
 		"annotations": []
 	}
