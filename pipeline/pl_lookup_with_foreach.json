@@ -1,0 +1,37 @@
+{
+	"name": "pl_lookup_with_foreach",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_lookup_with_foreach_sqlserver_raw",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select table_schema, table_name from INFORMATION_SCHEMA.TABLES\nwhere TABLE_NAME like '%raw%';",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_sqlserver_metadata_lookup_tables",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"folder": {
+			"name": "My Practice/22nd June GetMetadata, Lookup and ForEach activity"
+		},
+		"annotations": []
+	}
+}
