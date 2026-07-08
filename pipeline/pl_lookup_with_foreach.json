@@ -27,6 +27,65 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "ForEach_sqlserver_raw_table_copy",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_lookup_with_foreach_sqlserver_raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_lookup_with_foreach_sqlserver_raw').output.valueactivity('Lookup_lookup_with_foreach_sqlserver_raw').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy_sqlserver_raw_table",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_sqlserver_foreach_rawtables",
+									"type": "DatasetReference",
+									"parameters": {
+										"pTableName": {
+											"value": "@item().pTableName",
+											"type": "Expression"
+										},
+										"pSchemaName": {
+											"value": "@item().table_schema",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
 			}
 		],
 		"folder": {

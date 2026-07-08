@@ -8,13 +8,19 @@
 		"parameters": {
 			"pTableName": {
 				"type": "string"
+			},
+			"pSchemaName": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "dbo",
+			"schema": {
+				"value": "@dataset().pSchemaName",
+				"type": "Expression"
+			},
 			"table": {
 				"value": "@dataset().pTableName",
 				"type": "Expression"
