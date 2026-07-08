@@ -1,5 +1,5 @@
 {
-	"name": "pl_sqlserver_adls_multipal_table",
+	"name": "pl_sqlserver_adls_foreach_multipal_table",
 	"properties": {
 		"activities": [
 			{
