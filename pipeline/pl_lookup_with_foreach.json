@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup_lookup_with_foreach",
+				"name": "Lookup_lookup_with_foreach_sqlserver_raw",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -33,7 +33,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Lookup_lookup_with_foreach",
+						"activity": "Lookup_lookup_with_foreach_sqlserver_raw",
 						"dependencyConditions": [
 							"Succeeded"
 						]
