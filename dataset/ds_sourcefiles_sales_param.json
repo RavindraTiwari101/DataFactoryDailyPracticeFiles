@@ -5,11 +5,6 @@
 			"referenceName": "ls_adls_clintrail_dev28June",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"psourcefile": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
