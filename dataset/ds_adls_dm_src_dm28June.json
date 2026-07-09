@@ -15,10 +15,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().pSourcefile",
-					"type": "Expression"
-				},
 				"folderPath": "sourceFiles/sales",
 				"fileSystem": "cr-clintrail"
 			},
