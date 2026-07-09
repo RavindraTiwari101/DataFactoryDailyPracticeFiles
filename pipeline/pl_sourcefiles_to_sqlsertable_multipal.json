@@ -91,10 +91,10 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ds_adls_dm_srcfiles",
+									"referenceName": "ds_adls_dm_src_dm28June",
 									"type": "DatasetReference",
 									"parameters": {
-										"pfilename": {
+										"pSourcefile": {
 											"value": "@item().name",
 											"type": "Expression"
 										}
