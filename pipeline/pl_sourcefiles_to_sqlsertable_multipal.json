@@ -68,8 +68,6 @@
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
-										"wildcardFolderPath": "sourceFiles/sales",
-										"wildcardFileName": "*.csv",
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -94,11 +92,11 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ds_sourcefiles_sales_param",
+									"referenceName": "ds_adls_dm_raw",
 									"type": "DatasetReference",
 									"parameters": {
 										"pfilename": {
-											"value": "@item().itemName",
+											"value": "@item().name",
 											"type": "Expression"
 										}
 									}
