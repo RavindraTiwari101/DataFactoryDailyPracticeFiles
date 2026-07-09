@@ -5,13 +5,21 @@
 			"referenceName": "ls_adls_clintrail_dev28June",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"pSourcefile": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "CREATE LOGIN adf.docx",
-				"folderPath": "sourceFiles/DM",
+				"fileName": {
+					"value": "@dataset().pSourcefile",
+					"type": "Expression"
+				},
+				"folderPath": "sourceFiles/sales",
 				"fileSystem": "cr-clintrail"
 			},
 			"columnDelimiter": ",",
