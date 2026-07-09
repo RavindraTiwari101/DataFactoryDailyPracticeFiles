@@ -53,8 +53,6 @@
 						{
 							"name": "copy_adlssourcefiles_sqlserdb",
 							"type": "Copy",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
@@ -97,7 +95,13 @@
 							"inputs": [
 								{
 									"referenceName": "ds_sourcefiles_sales_param",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"pfilename": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
@@ -106,10 +110,9 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"pTableName": {
-											"value": "@replace(item().name,'.csv',' ')\n",
+											"value": "@replace(item().name,'.csv','')\n",
 											"type": "Expression"
-										},
-										"pSchemaName": "adf_test"
+										}
 									}
 								}
 							]
