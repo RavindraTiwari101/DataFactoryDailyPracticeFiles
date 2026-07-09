@@ -107,7 +107,7 @@
 											"value": "@replace(item().name,'.csv','')\n",
 											"type": "Expression"
 										},
-										"pSchemaName": "dbo"
+										"pSchemaName": "adf_test"
 									}
 								}
 							]
