@@ -104,7 +104,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"pTableName": {
-											"value": "@replace(item().name,'.csv','')\n",
+											"value": "@replace(item().name,'.csv',' ')\n",
 											"type": "Expression"
 										},
 										"pSchemaName": "adf_test"
