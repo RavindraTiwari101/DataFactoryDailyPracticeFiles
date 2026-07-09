@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "ds_adls_dm_srcfiles",
+						"referenceName": "ds_sourcefiles_sales_param",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
