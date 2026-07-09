@@ -1,0 +1,42 @@
+{
+	"name": "pl_databrick_test_example",
+	"properties": {
+		"activities": [
+			{
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/raviytiwari101@gmail.com/Clintrial_Dev/Clintrial_landing_silver/nb_read_alds_data_2026-07-09 07:40:35",
+					"baseParameters": {
+						"filename": {
+							"value": "@pipeline().parameters.p_filename",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_clintrial",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"p_filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "My Practice"
+		},
+		"annotations": []
+	}
+}
