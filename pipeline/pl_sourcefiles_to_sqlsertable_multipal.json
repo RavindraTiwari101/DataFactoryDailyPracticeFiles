@@ -112,7 +112,8 @@
 										"pTableName": {
 											"value": "@replace(item().name,'.csv','')\n",
 											"type": "Expression"
-										}
+										},
+										"pSchemaName": "dbo"
 									}
 								}
 							]
