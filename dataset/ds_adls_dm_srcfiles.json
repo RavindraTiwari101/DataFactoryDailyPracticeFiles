@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "jan_customer_FY2024.csv",
 				"folderPath": "sourceFiles/sales",
 				"fileSystem": "cr-clintrail"
 			},
