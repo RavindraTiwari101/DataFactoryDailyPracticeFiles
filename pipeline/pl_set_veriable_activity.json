@@ -1,0 +1,64 @@
+{
+	"name": "pl_set_veriable_activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy_set_veriable_activity",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_adls_source_files_pl_param",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsSourceFolder": {
+								"value": "@pipeline().parameters.pSourceFolder",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"pSourceFolder": {
+				"type": "string"
+			},
+			"pSourceFile": {
+				"type": "string"
+			},
+			"pTargetFolder": {
+				"type": "string"
+			},
+			"PTargetFile": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "My Practice/23rd June Set Veriable"
+		},
+		"annotations": []
+	}
+}
