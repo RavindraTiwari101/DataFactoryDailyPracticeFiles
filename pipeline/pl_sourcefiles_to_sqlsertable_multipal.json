@@ -17,13 +17,17 @@
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "ds_sourcefiles_sales_param",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"pfilename": "pfilename.name"
+						}
 					},
 					"fieldList": [
 						"childItems"
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
