@@ -19,7 +19,7 @@
 					"value": "@dataset().pTargetFiles",
 					"type": "Expression"
 				},
-				"folderPath": "listoffiles/feb",
+				"folderPath": "listoffiles",
 				"fileSystem": "cr-clintrail"
 			},
 			"columnDelimiter": ",",
