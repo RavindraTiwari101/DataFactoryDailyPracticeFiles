@@ -1,0 +1,84 @@
+{
+	"name": "ds_filterdata_act",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_dm_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "sourceFiles/sales",
+				"fileSystem": "cr-clintrail"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "discount_id",
+				"type": "String"
+			},
+			{
+				"name": "discount_code",
+				"type": "String"
+			},
+			{
+				"name": "discount_name",
+				"type": "String"
+			},
+			{
+				"name": "discount_type",
+				"type": "String"
+			},
+			{
+				"name": "discount_value",
+				"type": "String"
+			},
+			{
+				"name": "min_purchase_amount",
+				"type": "String"
+			},
+			{
+				"name": "max_discount_amount",
+				"type": "String"
+			},
+			{
+				"name": "valid_from",
+				"type": "String"
+			},
+			{
+				"name": "valid_to",
+				"type": "String"
+			},
+			{
+				"name": "applicable_segment",
+				"type": "String"
+			},
+			{
+				"name": "applicable_category",
+				"type": "String"
+			},
+			{
+				"name": "usage_limit_per_customer",
+				"type": "String"
+			},
+			{
+				"name": "total_usage_limit",
+				"type": "String"
+			},
+			{
+				"name": "is_active",
+				"type": "String"
+			},
+			{
+				"name": "created_date",
+				"type": "String"
+			}
+		]
+	}
+}
