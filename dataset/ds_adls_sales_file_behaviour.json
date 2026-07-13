@@ -1,25 +1,17 @@
 {
-	"name": "ds_adls_dm_raw",
+	"name": "ds_adls_sales_file_behaviour",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_adls_dm_gen2",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"pfilename": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().pfilename",
-					"type": "Expression"
-				},
-				"folderPath": "sourceFiles/sales",
+				"fileName": "MMaarch.csv",
+				"folderPath": "raw/DM",
 				"fileSystem": "cr-clintrail"
 			},
 			"columnDelimiter": ",",
@@ -28,6 +20,5 @@
 			"quoteChar": "\""
 		},
 		"schema": []
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

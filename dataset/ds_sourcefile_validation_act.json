@@ -1,24 +1,16 @@
 {
-	"name": "ds_adls_dm_raw",
+	"name": "ds_sourcefile_validation_act",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_adls_dm_gen2",
+			"referenceName": "ls_adls_clintrail_dev28June",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"pfilename": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().pfilename",
-					"type": "Expression"
-				},
+				"fileName": "discount_20260625.csv",
 				"folderPath": "sourceFiles/sales",
 				"fileSystem": "cr-clintrail"
 			},
@@ -28,6 +20,5 @@
 			"quoteChar": "\""
 		},
 		"schema": []
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

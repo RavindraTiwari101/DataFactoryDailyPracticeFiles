@@ -1,12 +1,12 @@
 {
-	"name": "ds_adls_dm_raw",
+	"name": "ds_targetfiles_jan_fef",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_adls_dm_gen2",
+			"referenceName": "ls_adls_clintrail_dev28June",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"pfilename": {
+			"pTargetFiles": {
 				"type": "string"
 			}
 		},
@@ -16,10 +16,10 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@dataset().pfilename",
+					"value": "@dataset().pTargetFiles",
 					"type": "Expression"
 				},
-				"folderPath": "sourceFiles/sales",
+				"folderPath": "listoffiles",
 				"fileSystem": "cr-clintrail"
 			},
 			"columnDelimiter": ",",
@@ -28,6 +28,5 @@
 			"quoteChar": "\""
 		},
 		"schema": []
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

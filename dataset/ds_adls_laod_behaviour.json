@@ -1,14 +1,9 @@
 {
-	"name": "ds_adls_dm_src_dm28June",
+	"name": "ds_adls_laod_behaviour",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_adls_clintrail_dev28June",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"pSourcefile": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
@@ -65,6 +60,5 @@
 				"type": "String"
 			}
 		]
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

@@ -1,9 +1,10 @@
 {
-	"name": "pl_invoice_azuresql_adlsgen2",
+	"name": "pl_adls_laod_behaviour",
 	"properties": {
 		"activities": [
 			{
-				"name": "copy_invoice_azuresql_adlsgen2",
+				"name": "Copy_pl_adls_laod_behaviour",
+				"description": "pl_adls_laod_behaviour",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -16,21 +17,28 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select * from [raw].[invoice_20260623]",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "sourceFiles/sales",
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
 					},
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "PreserveHierarchy"
+							"copyBehavior": "MergeFiles"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".csv"
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
@@ -45,23 +53,21 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_azuresql_clintrial",
+						"referenceName": "ds_adls_laod_behaviour",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_invoice_adls_raw",
+						"referenceName": "ds_adls_sales_file_behaviour",
 						"type": "DatasetReference"
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "My Practice/13-15 June AzurreSQL--ADLS Gen2"
+			"name": "My Practice/18 June Multipal activity"
 		},
-		"annotations": [],
-		"lastPublishTime": "2026-07-02T08:09:44Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+		"annotations": []
+	}
 }

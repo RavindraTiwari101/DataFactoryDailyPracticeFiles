@@ -44,7 +44,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "raw_patients_yyyymmdd"
+			"table": "raw_ifsalescontion"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

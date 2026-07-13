@@ -1,9 +1,9 @@
 {
-	"name": "pl_temp_copy",
+	"name": "pl_set_veriable_activity",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_adls_copy",
+				"name": "copy_set_veriable_activity",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -29,8 +29,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "PreserveHierarchy"
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -50,20 +49,54 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_adls_dm_raw",
-						"type": "DatasetReference"
+						"referenceName": "ds_adls_source_files_pl_param",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsSourceFolder": {
+								"value": "@pipeline().parameters.pSourceFolder",
+								"type": "Expression"
+							},
+							"pDsSourceFile": {
+								"value": "@pipeline().parameters.pSourceFile",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_invoice_adls_raw",
-						"type": "DatasetReference"
+						"referenceName": "ds_targetfiles_param",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsTargetFolder": {
+								"value": "@pipeline().parameters.pTargetFolder",
+								"type": "Expression"
+							},
+							"pDsSourceFile": {
+								"value": "@pipeline().parameters.PTargetFile",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"pSourceFolder": {
+				"type": "string"
+			},
+			"pSourceFile": {
+				"type": "string"
+			},
+			"pTargetFolder": {
+				"type": "string"
+			},
+			"PTargetFile": {
+				"type": "string"
+			}
+		},
 		"folder": {
-			"name": "My Practice/02nd July SCD Type 1 and 2 Data Flow"
+			"name": "My Practice/23rd June Set Veriable"
 		},
 		"annotations": []
 	}

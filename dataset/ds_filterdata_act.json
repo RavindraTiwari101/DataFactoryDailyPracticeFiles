@@ -1,14 +1,9 @@
 {
-	"name": "ds_adls_dm_src_dm28June",
+	"name": "ds_filterdata_act",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_adls_clintrail_dev28June",
+			"referenceName": "ls_adls_dm_gen2",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"pSourcefile": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
@@ -25,46 +20,65 @@
 		},
 		"schema": [
 			{
-				"name": "customer_id",
+				"name": "discount_id",
 				"type": "String"
 			},
 			{
-				"name": "customer_name",
+				"name": "discount_code",
 				"type": "String"
 			},
 			{
-				"name": "email",
+				"name": "discount_name",
 				"type": "String"
 			},
 			{
-				"name": "phone",
+				"name": "discount_type",
 				"type": "String"
 			},
 			{
-				"name": "address",
+				"name": "discount_value",
 				"type": "String"
 			},
 			{
-				"name": "city",
+				"name": "min_purchase_amount",
 				"type": "String"
 			},
 			{
-				"name": "state",
+				"name": "max_discount_amount",
 				"type": "String"
 			},
 			{
-				"name": "country",
+				"name": "valid_from",
 				"type": "String"
 			},
 			{
-				"name": "zip_code",
+				"name": "valid_to",
 				"type": "String"
 			},
 			{
-				"name": "segment",
+				"name": "applicable_segment",
+				"type": "String"
+			},
+			{
+				"name": "applicable_category",
+				"type": "String"
+			},
+			{
+				"name": "usage_limit_per_customer",
+				"type": "String"
+			},
+			{
+				"name": "total_usage_limit",
+				"type": "String"
+			},
+			{
+				"name": "is_active",
+				"type": "String"
+			},
+			{
+				"name": "created_date",
 				"type": "String"
 			}
 		]
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

@@ -1,0 +1,61 @@
+{
+	"name": "pl_sales_adls_sqlserver_watermarkload_cdc",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_sales_adls_sqlserver_watermark_cdc",
+				"description": "sales_adls_sqlserver_\nfor WaterMark Table\nIncremental Load\nCDC (Change Data Capture)\n",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"additionalColumns": [
+							{
+								"name": "CurrentDateTime",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "Plan Type",
+								"value": "Prepaid"
+							}
+						],
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "BinarySink"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "dt_sales_sqlserverdb_watermark",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_br_adls_allsrcfiles",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "My Practice/17 June Incremental Load"
+		},
+		"annotations": []
+	}
+}

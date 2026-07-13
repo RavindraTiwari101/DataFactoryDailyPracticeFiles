@@ -1,0 +1,35 @@
+{
+	"name": "ds_sqlserver_dbo_tabname",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver_healthconnect_raw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "diagnosis_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "encounter_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "diagnosis_description",
+				"type": "varchar"
+			},
+			{
+				"name": "is_primary",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "raw_diagnoses_yyyymmdd"
+		}
+	}
+}

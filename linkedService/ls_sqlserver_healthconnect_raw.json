@@ -12,7 +12,7 @@
 			"trustServerCertificate": false,
 			"authenticationType": "Windows",
 			"userName": "DESKTOP-TL1QLUE\\Aarav",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhNWFjNjM0ZC03M2RkLTQxNTctODg3Ny05YWU2ZmQ5MDk2ZDQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlNDMxNTFjNS02MTY4LTQzZjQtOTliYi1mZDcyYzEwNTQ1NjAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "shir-local-computer",

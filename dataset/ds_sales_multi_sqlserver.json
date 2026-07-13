@@ -1,20 +1,16 @@
 {
-	"name": "ds_adls_dm_src_dm28June",
+	"name": "ds_sales_multi_sqlserver",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_adls_clintrail_dev28June",
+			"referenceName": "ls_adls_dm_gen2",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"pSourcefile": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "sales_20260623.csv",
 				"folderPath": "sourceFiles/sales",
 				"fileSystem": "cr-clintrail"
 			},
@@ -25,46 +21,65 @@
 		},
 		"schema": [
 			{
+				"name": "sale_id",
+				"type": "String"
+			},
+			{
+				"name": "product_id",
+				"type": "String"
+			},
+			{
+				"name": "store_id",
+				"type": "String"
+			},
+			{
 				"name": "customer_id",
 				"type": "String"
 			},
 			{
-				"name": "customer_name",
+				"name": "region_id",
 				"type": "String"
 			},
 			{
-				"name": "email",
+				"name": "quantity",
 				"type": "String"
 			},
 			{
-				"name": "phone",
+				"name": "unit_price",
 				"type": "String"
 			},
 			{
-				"name": "address",
+				"name": "gross_amount",
 				"type": "String"
 			},
 			{
-				"name": "city",
+				"name": "discount_code",
 				"type": "String"
 			},
 			{
-				"name": "state",
+				"name": "discount_amount",
 				"type": "String"
 			},
 			{
-				"name": "country",
+				"name": "net_amount",
 				"type": "String"
 			},
 			{
-				"name": "zip_code",
+				"name": "cost_amount",
 				"type": "String"
 			},
 			{
-				"name": "segment",
+				"name": "sale_date",
+				"type": "String"
+			},
+			{
+				"name": "payment_method",
+				"type": "String"
+			},
+			{
+				"name": "channel",
 				"type": "String"
 			}
 		]
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

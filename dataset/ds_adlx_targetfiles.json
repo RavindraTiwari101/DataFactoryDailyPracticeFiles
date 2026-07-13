@@ -1,25 +1,17 @@
 {
-	"name": "ds_adls_dm_raw",
+	"name": "ds_adlx_targetfiles",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_adls_dm_gen2",
+			"referenceName": "ls_adls_clintrail_dev28June",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"pfilename": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().pfilename",
-					"type": "Expression"
-				},
-				"folderPath": "sourceFiles/sales",
+				"fileName": "digo2025.csv",
+				"folderPath": "Targetfiles",
 				"fileSystem": "cr-clintrail"
 			},
 			"columnDelimiter": ",",
@@ -28,6 +20,5 @@
 			"quoteChar": "\""
 		},
 		"schema": []
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

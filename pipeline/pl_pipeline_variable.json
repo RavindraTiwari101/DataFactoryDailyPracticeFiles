@@ -1,11 +1,18 @@
 {
-	"name": "pl_temp_copy",
+	"name": "pl_pipeline_variable",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_adls_copy",
+				"name": "copy_sourcefile_to_targetfiles",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "setvartargetfile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -29,8 +36,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "PreserveHierarchy"
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -50,20 +56,48 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_adls_dm_raw",
+						"referenceName": "ds_sourcefiles_veriable",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_invoice_adls_raw",
-						"type": "DatasetReference"
+						"referenceName": "ds_targetfiles_veriable",
+						"type": "DatasetReference",
+						"parameters": {
+							"pTargetFileName": {
+								"value": "@concat('Total',variables('vCurrentTimeStamp'),'.csv')",
+								"type": "Expression"
+							}
+						}
 					}
 				]
+			},
+			{
+				"name": "setvartargetfile",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "vCurrentTimeStamp",
+					"value": {
+						"value": "@utcNow()",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"vCurrentTimeStamp": {
+				"type": "String"
+			}
+		},
 		"folder": {
-			"name": "My Practice/02nd July SCD Type 1 and 2 Data Flow"
+			"name": "My Practice/23rd June Set Veriable"
 		},
 		"annotations": []
 	}
