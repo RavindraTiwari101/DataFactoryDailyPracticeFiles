@@ -9,12 +9,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "ds_sourcefile_validation_act",
+						"referenceName": "ds_folder_validation_act",
 						"type": "DatasetReference"
 					},
 					"timeout": "0.00:10:00",
-					"sleep": 5,
-					"minimumSize": 1
+					"sleep": 10,
+					"childItems": true
 				}
 			},
 			{

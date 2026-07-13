@@ -1,0 +1,23 @@
+{
+	"name": "ds_folder_validation_act",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_clintrail_dev28June",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "ValidationDemo",
+				"fileSystem": "cr-clintrail"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
