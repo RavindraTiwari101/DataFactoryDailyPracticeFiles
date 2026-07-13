@@ -1,0 +1,26 @@
+{
+	"name": "pl_validation_activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Validation_activity",
+				"type": "Validation",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_sourcefile_validation_act",
+						"type": "DatasetReference"
+					},
+					"timeout": "0.00:10:00",
+					"sleep": 5,
+					"minimumSize": 1
+				}
+			}
+		],
+		"folder": {
+			"name": "My Practice/25th June Validation Act"
+		},
+		"annotations": []
+	}
+}
