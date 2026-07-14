@@ -20,7 +20,20 @@
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
@@ -30,8 +43,22 @@
 							"pDsSourceDatabase": {
 								"value": "@pipeline().parameters.psourceDatabaseName",
 								"type": "Expression"
+							},
+							"pDsSourceSchemaName": {
+								"value": "@pipeline().parameters.psourceSchemaName",
+								"type": "Expression"
+							},
+							"pDssourceTableName": {
+								"value": "@pipeline().parameters.psourceTableName",
+								"type": "Expression"
 							}
 						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_sqlserver_multiple_db_param",
+						"type": "DatasetReference"
 					}
 				]
 			}
