@@ -1,0 +1,39 @@
+{
+	"name": "ds_bin_sink_targetfile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_clintrail_dev28June",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"pDsTargetContainerName": {
+				"type": "string"
+			},
+			"pDsTargetFoldername": {
+				"type": "string"
+			},
+			"pDsTargetFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().pDsTargetFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().pDsTargetFoldername",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().pDsTargetContainerName",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}

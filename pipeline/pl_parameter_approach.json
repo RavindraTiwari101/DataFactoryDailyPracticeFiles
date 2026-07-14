@@ -1,0 +1,103 @@
+{
+	"name": "pl_parameter_approach",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_parameter_approach",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_adls_bin_sourcefile",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsSourceContainerName": {
+								"value": "@pipeline().parameters.pPlSourceContainerName",
+								"type": "Expression"
+							},
+							"pDSourceFoldername": {
+								"value": "@pipeline().parameters.pPlSourceFolderName",
+								"type": "Expression"
+							},
+							"PDsSourceFileName": {
+								"value": "@pipeline().parameters.pPlSourceFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_bin_sink_targetfile",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsTargetContainerName": {
+								"value": "@pipeline().parameters.pPlTargetContainerName",
+								"type": "Expression"
+							},
+							"pDsTargetFoldername": {
+								"value": "@pipeline().parameters.pPlTargetFolderName",
+								"type": "Expression"
+							},
+							"pDsTargetFileName": {
+								"value": "@pipeline().parameters.pPlTargetFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"pPlSourceContainerName": {
+				"type": "string"
+			},
+			"pPlSourceFolderName": {
+				"type": "string"
+			},
+			"pPlSourceFileName": {
+				"type": "string"
+			},
+			"pPlTargetContainerName": {
+				"type": "string"
+			},
+			"pPlTargetFolderName": {
+				"type": "string"
+			},
+			"pPlTargetFileName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "My Practice/26th June parameterization"
+		},
+		"annotations": []
+	}
+}

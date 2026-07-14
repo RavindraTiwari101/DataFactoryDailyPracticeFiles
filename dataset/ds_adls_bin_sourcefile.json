@@ -1,0 +1,39 @@
+{
+	"name": "ds_adls_bin_sourcefile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_clintrail_dev28June",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"pDsSourceContainerName": {
+				"type": "string"
+			},
+			"pDSourceFoldername": {
+				"type": "string"
+			},
+			"PDsSourceFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().PDsSourceFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().pDSourceFoldername",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().pDsSourceContainerName",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
