@@ -1,0 +1,64 @@
+{
+	"name": "pl_sqlserver_parameterised",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy_sqlserver_parameterised",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_sqlserver_multiple_db_param",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsSourceDatabase": {
+								"value": "@pipeline().parameters.psourceDatabaseName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"psourceDatabaseName": {
+				"type": "string"
+			},
+			"psourceSchemaName": {
+				"type": "string"
+			},
+			"psourceTableName": {
+				"type": "string"
+			},
+			"pTargetDatabaseName": {
+				"type": "string"
+			},
+			"pTargetSchemaNam": {
+				"type": "string"
+			},
+			"pTargetTableName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "My Practice/25th June Validation Act"
+		},
+		"annotations": []
+	}
+}

@@ -1,0 +1,29 @@
+{
+	"name": "ds_sqlserver_multiple_db_param",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver_multiple_db",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"pDatabase": {
+					"value": "@dataset().pDsSourceDatabase",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"pDsSourceDatabase": {
+				"type": "string"
+			},
+			"pDsSourceSchemaName": {
+				"type": "string"
+			},
+			"pDssourceTableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
