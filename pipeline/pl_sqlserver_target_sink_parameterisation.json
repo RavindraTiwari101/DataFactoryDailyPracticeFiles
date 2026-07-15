@@ -78,7 +78,7 @@
 								"type": "Expression"
 							},
 							"pDsTargetTableName": {
-								"value": "@pipeline().parameters.pPlTabkeSchemaName",
+								"value": "@pipeline().parameters.pPlTargetTableName",
 								"type": "Expression"
 							}
 						}
@@ -108,7 +108,7 @@
 			"pPlTargetSchemaName": {
 				"type": "string"
 			},
-			"pPlTabkeSchemaName": {
+			"pPlTargetTableName": {
 				"type": "string"
 			}
 		},
