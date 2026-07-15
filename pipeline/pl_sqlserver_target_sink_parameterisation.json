@@ -1,0 +1,101 @@
+{
+	"name": "pl_sqlserver_target_sink_parameterisation",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_sqlserver_Sourcetable_Para",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_sqlserver_sourcetable_parameter",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsSourceServerName": {
+								"value": "@pipeline().parameters.pPlSourceServerName",
+								"type": "Expression"
+							},
+							"pDsSourceDBName": {
+								"value": "@pipeline().parameters.pPlSourceDBName",
+								"type": "Expression"
+							},
+							"pDsSourceSchemaName": {
+								"value": "@pipeline().parameters.pPlSourceSchemaName",
+								"type": "Expression"
+							},
+							"pDsSourceTableName": {
+								"value": "@pipeline().parameters.pPlSourceTableName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_sqlserver_target_table_param",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"pPlSourceServerName": {
+				"type": "string"
+			},
+			"pPlSourceDBName": {
+				"type": "string"
+			},
+			"pPlSourceSchemaName": {
+				"type": "string"
+			},
+			"pPlSourceTableName": {
+				"type": "string"
+			},
+			"pPlTargetServerName": {
+				"type": "string"
+			},
+			"pPlTargetDBName": {
+				"type": "string"
+			},
+			"pPlTargetSchemaName": {
+				"type": "string"
+			},
+			"pPlTabkeSchemaName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "My Practice/26th June parameterization"
+		},
+		"annotations": []
+	}
+}
