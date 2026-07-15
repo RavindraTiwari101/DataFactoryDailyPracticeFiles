@@ -77,19 +77,23 @@
 		],
 		"parameters": {
 			"pPlSourceContainerName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "cr-clintrail"
 			},
 			"pPlSourceFolderName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "sourceFiles/sales"
 			},
 			"pPlSourceFileName": {
 				"type": "string"
 			},
 			"pPlTargetContainerName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "cr-sink-clintrail"
 			},
 			"pPlTargetFolderName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "Target/sales"
 			},
 			"pPlTargetFileName": {
 				"type": "string"
