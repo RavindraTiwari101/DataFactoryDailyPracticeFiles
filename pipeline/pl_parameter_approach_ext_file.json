@@ -202,30 +202,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"pPlSourceContainerName": {
-				"type": "string",
-				"defaultValue": "cr-clintrail"
-			},
-			"pPlSourceFolderName": {
-				"type": "string",
-				"defaultValue": "sourceFiles/sales"
-			},
-			"pPlSourceFileName": {
-				"type": "string"
-			},
-			"pPlTargetContainerName": {
-				"type": "string",
-				"defaultValue": "cr-sink-clintrail"
-			},
-			"pPlTargetFolderName": {
-				"type": "string",
-				"defaultValue": "Target/sales"
-			},
-			"pPlTargetFileName": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "My Practice/26th June parameterization"
 		},
