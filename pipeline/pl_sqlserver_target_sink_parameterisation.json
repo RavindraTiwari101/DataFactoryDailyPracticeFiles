@@ -66,19 +66,19 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"pDsTargetservername": {
-								"value": "@pipeline().parameters.pPlSourceServerName",
+								"value": "@pipeline().parameters.pPlTargetServerName",
 								"type": "Expression"
 							},
 							"pDsTargetDBName": {
-								"value": "@pipeline().parameters.pPlSourceDBName",
+								"value": "@pipeline().parameters.pPlTargetDBName",
 								"type": "Expression"
 							},
 							"pDsTargetSchemaname": {
-								"value": "@pipeline().parameters.pPlSourceSchemaName",
+								"value": "@pipeline().parameters.pPlTargetSchemaName",
 								"type": "Expression"
 							},
 							"pDsTargetTableName": {
-								"value": "@pipeline().parameters.pPlSourceTableName",
+								"value": "@pipeline().parameters.pPlTabkeSchemaName",
 								"type": "Expression"
 							}
 						}
