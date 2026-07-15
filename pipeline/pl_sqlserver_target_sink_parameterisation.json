@@ -62,7 +62,25 @@
 				"outputs": [
 					{
 						"referenceName": "ds_sqlserver_target_table_param",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsTargetservername": {
+								"value": "@pipeline().parameters.pPlSourceServerName",
+								"type": "Expression"
+							},
+							"pDsTargetDBName": {
+								"value": "@pipeline().parameters.pPlSourceDBName",
+								"type": "Expression"
+							},
+							"pDsTargetSchemaname": {
+								"value": "@pipeline().parameters.pPlSourceSchemaName",
+								"type": "Expression"
+							},
+							"pDsTargetTableName": {
+								"value": "@pipeline().parameters.pPlSourceTableName",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
