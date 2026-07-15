@@ -1,5 +1,5 @@
 {
-	"name": "pl_parameter_approach",
+	"name": "pl_parameter_approach_ext_file",
 	"properties": {
 		"activities": [
 			{
@@ -19,7 +19,8 @@
 						"type": "BinarySource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true
+							"recursive": true,
+							"deleteFilesAfterCompletion": false
 						},
 						"formatSettings": {
 							"type": "BinaryReadSettings"
