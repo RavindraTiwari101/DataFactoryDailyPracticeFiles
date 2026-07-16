@@ -47,7 +47,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Copy_sqlserver_Sourcetable_Para_copy1').output.value",
+						"value": "@activity('Lookup_sqlserver_para').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
