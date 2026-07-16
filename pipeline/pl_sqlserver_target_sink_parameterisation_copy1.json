@@ -55,8 +55,6 @@
 						{
 							"name": "Copy_sqlserver_Sourcetable_Para_copy1",
 							"type": "Copy",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
