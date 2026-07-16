@@ -3,98 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_sqlserver_Sourcetable_Para",
-				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [
-					{
-						"activity": "Lookup_sqlserver_para",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "SqlServerSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "SqlServerSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false,
-						"tableOption": "autoCreate"
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "ds_sqlserver_sourcetable_parameter",
-						"type": "DatasetReference",
-						"parameters": {
-							"pDsSourceServerName": {
-								"value": "@pipeline().parameters.pPlSourceServerName",
-								"type": "Expression"
-							},
-							"pDsSourceDBName": {
-								"value": "@pipeline().parameters.pPlSourceDBName",
-								"type": "Expression"
-							},
-							"pDsSourceSchemaName": {
-								"value": "@pipeline().parameters.pPlSourceSchemaName",
-								"type": "Expression"
-							},
-							"pDsSourceTableName": {
-								"value": "@pipeline().parameters.pPlSourceTableName",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "ds_sqlserver_target_table_param",
-						"type": "DatasetReference",
-						"parameters": {
-							"pDsTargetservername": {
-								"value": "@pipeline().parameters.pPlTargetServerName",
-								"type": "Expression"
-							},
-							"pDsTargetDBName": {
-								"value": "@pipeline().parameters.pPlTargetDBName",
-								"type": "Expression"
-							},
-							"pDsTargetSchemaname": {
-								"value": "@pipeline().parameters.pPlTargetSchemaName",
-								"type": "Expression"
-							},
-							"pDsTargetTableName": {
-								"value": "@pipeline().parameters.pPlTargetTableName",
-								"type": "Expression"
-							}
-						}
-					}
-				]
-			},
-			{
 				"name": "Lookup_sqlserver_para",
 				"type": "Lookup",
 				"dependsOn": [],
@@ -124,34 +32,113 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "ForEach1_sqlserver",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_sqlserver_para",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_sqlserver_para').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy_sqlserver_Sourcetable_Para_copy1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "SqlServerSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_sqlserver_sourcetable_parameter",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsSourceServerName": {
+											"value": "@item().SourceServerName",
+											"type": "Expression"
+										},
+										"pDsSourceDBName": {
+											"value": "@item().SourceDBName",
+											"type": "Expression"
+										},
+										"pDsSourceSchemaName": {
+											"value": "@item().SourceSchemaName",
+											"type": "Expression"
+										},
+										"pDsSourceTableName": {
+											"value": "@item().SourceTableName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_sqlserver_target_table_param",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsTargetservername": {
+											"value": "@item().TargetServerName",
+											"type": "Expression"
+										},
+										"pDsTargetDBName": {
+											"value": "@item().TargetDBName",
+											"type": "Expression"
+										},
+										"pDsTargetSchemaname": {
+											"value": "@item().TargetSchemaName",
+											"type": "Expression"
+										},
+										"pDsTargetTableName": {
+											"value": "@item().TargetTableName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
 			}
 		],
-		"parameters": {
-			"pPlSourceServerName": {
-				"type": "string"
-			},
-			"pPlSourceDBName": {
-				"type": "string"
-			},
-			"pPlSourceSchemaName": {
-				"type": "string"
-			},
-			"pPlSourceTableName": {
-				"type": "string"
-			},
-			"pPlTargetServerName": {
-				"type": "string"
-			},
-			"pPlTargetDBName": {
-				"type": "string"
-			},
-			"pPlTargetSchemaName": {
-				"type": "string"
-			},
-			"pPlTargetTableName": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "My Practice/27th June SqlParameter and Store procedure"
 		},
