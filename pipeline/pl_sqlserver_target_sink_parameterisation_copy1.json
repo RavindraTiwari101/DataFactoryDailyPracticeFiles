@@ -138,8 +138,6 @@
 						{
 							"name": "Stored _rocedure_audit_log_table_success",
 							"type": "SqlServerStoredProcedure",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "Copy_sqlserver_Sourcetable_Para_copy1",
