@@ -1,0 +1,147 @@
+{
+	"name": "pl_sqlserver_target_sink_parameterisation_copy2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_sqlserver_para",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ds_adls_sqlserver_source_target_mapping_json",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1_sqlserver123",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_sqlserver_para",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_sqlserver_para').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy_sqlserver_Sourcetable_Para_copy1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "SqlServerSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_sqlserver_sourcetable_parameter",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsSourceServerName": {
+											"value": "@item().SourceServerName",
+											"type": "Expression"
+										},
+										"pDsSourceDBName": {
+											"value": "@item().SourceDBName",
+											"type": "Expression"
+										},
+										"pDsSourceSchemaName": {
+											"value": "@item().SourceSchemaName",
+											"type": "Expression"
+										},
+										"pDsSourceTableName": {
+											"value": "@item().SourceTableName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_sqlserver_target_table_param",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsTargetservername": {
+											"value": "@item().TargetServerName",
+											"type": "Expression"
+										},
+										"pDsTargetDBName": {
+											"value": "@item().TargetDBName",
+											"type": "Expression"
+										},
+										"pDsTargetSchemaname": {
+											"value": "@item().TargetSchemaName",
+											"type": "Expression"
+										},
+										"pDsTargetTableName": {
+											"value": "@item().TargetTableName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"folder": {
+			"name": "My Practice/27th June SqlParameter and Store procedure"
+		},
+		"annotations": []
+	}
+}
