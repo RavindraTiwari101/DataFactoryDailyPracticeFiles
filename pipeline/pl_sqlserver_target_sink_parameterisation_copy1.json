@@ -159,7 +159,7 @@
 								"storedProcedureParameters": {
 									"dfname": {
 										"value": {
-											"value": "@pipeline().DataFactory",
+											"value": "@item().DataFactory",
 											"type": "Expression"
 										},
 										"type": "String"
