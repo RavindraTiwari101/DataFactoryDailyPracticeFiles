@@ -22,7 +22,13 @@
 					},
 					"dataset": {
 						"referenceName": "ds_sqlserver_source_adls_landing",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"pSrcTable": {
+								"value": "@pipeline().parameters.pPlTableName",
+								"type": "Expression"
+							}
+						}
 					},
 					"firstRowOnly": false
 				}
@@ -70,15 +76,23 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
-									"sqlReaderQuery": {
-										"value": "@if(equals(item().IngestionType,'Incremental'),\n    concat('SELECT * FROM ',item().SrcSchemaName,'.',item().SrcTableName,\n           ' WHERE ',coalesce(item().WatermarkColName,''),\n           ' > ''',coalesce(string(item().WatermarkColValue),''),''''),\n    concat('SELECT * FROM ',item().SrcSchemaName,'.',item().SrcTableName))",
-										"type": "Expression"
-									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
 								"enableStaging": false
-							}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_sqlserver_source_adls_landing",
+									"type": "DatasetReference",
+									"parameters": {
+										"pSrcTable": {
+											"value": "@item().value",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						},
 						{
 							"name": "LookupGetMaxMetaData",
@@ -154,6 +168,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"pPlTableName": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "dev_clintrail/SQLServerSrc_ADLSGen2Landing"
 		},
