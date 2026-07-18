@@ -22,13 +22,7 @@
 					},
 					"dataset": {
 						"referenceName": "ds_sqlserver_source_adls_landing",
-						"type": "DatasetReference",
-						"parameters": {
-							"pSrcTable": {
-								"value": "@pipeline().parameters.pPlTableName",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
 				}
@@ -36,6 +30,8 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "LookupSQLServerControlTable",
@@ -84,13 +80,7 @@
 							"inputs": [
 								{
 									"referenceName": "ds_sqlserver_source_adls_landing",
-									"type": "DatasetReference",
-									"parameters": {
-										"pSrcTable": {
-											"value": "@item().value",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							]
 						},
@@ -128,6 +118,8 @@
 						{
 							"name": "Stored procedureUpdtMxModifiedDt",
 							"type": "SqlServerStoredProcedure",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "LookupGetMaxMetaData",
@@ -169,7 +161,7 @@
 			}
 		],
 		"parameters": {
-			"pPlTableName": {
+			"pplTableName": {
 				"type": "string"
 			}
 		},
