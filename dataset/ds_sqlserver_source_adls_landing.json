@@ -1,0 +1,12 @@
+{
+	"name": "ds_sqlserver_source_adls_landing",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_source_sqlsever_landing",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
