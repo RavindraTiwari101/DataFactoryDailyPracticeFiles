@@ -40,15 +40,15 @@
 						"referenceName": "ds_sqlserver_multiple_db_param",
 						"type": "DatasetReference",
 						"parameters": {
-							"pDsSourceDatabase": {
+							"pDsServername": {
 								"value": "@pipeline().parameters.psourceDatabaseName",
 								"type": "Expression"
 							},
-							"pDsSourceSchemaName": {
+							"pDsDatabaseName": {
 								"value": "@pipeline().parameters.psourceSchemaName",
 								"type": "Expression"
 							},
-							"pDssourceTableName": {
+							"pDsSchemaName": {
 								"value": "@pipeline().parameters.psourceTableName",
 								"type": "Expression"
 							}

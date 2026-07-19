@@ -21,8 +21,14 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "ds_sqlserver_source_adls_landing",
-						"type": "DatasetReference"
+						"referenceName": "ds_sqlserver_multiple_db_param",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsServername": "localhost\\SQLEXPRESS",
+							"pDsDatabaseName": "dev_clintrail_edc_src",
+							"pDsSchemaName": "edcsrcmetadata",
+							"pDsTableName": "srcEdcClintrailToLandControl"
+						}
 					},
 					"firstRowOnly": false
 				}
@@ -30,8 +36,6 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "LookupSQLServerControlTable",
@@ -62,25 +66,72 @@
 							"userProperties": [
 								{
 									"name": "Source",
-									"value": "@{item().SrcSchemaName}.@{item().SrcTableName}"
+									"value": "@{item.SrcSchemaName}.@{item.SrcTableName}"
 								},
 								{
 									"name": "Destination",
-									"value": "@{item().LandingContainerName}/@{concat(item().SrcSchemaName,'/',item().SrcTableName,'/ingest_date=',formatDateTime(utcNow(),'yyyy-MM-dd'))}/@{concat(item().SrcTableName, '_', formatDateTime(utcNow(),'yyyyMMddHHmmss'), '.parquet')}"
+									"value": "@{item().LandingContainerName}/@{concat(item().SrcSchemaName,'/',item().SrcTableName,'/\n    ingest_date=',formatDateTime(utcNow(),'yyyy-MM-dd'))\n    }/@{concat(item().SrcTableName, '_',formatDateTime(utcNow(),\n        'yyyyMMddHHmmss'), '.parquet')\n        }"
 								}
 							],
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "@if(equals(item().IngestionType, 'Incremental'),\n    concat('SELECT * FROM ', item().SrcSchemaName,'.',item().SrcTableName,\n            'WHERE' ,coalesce(item().WatermarkColName,''),\n            ' > ''',coalesce(string(item().WatermarkColValue),''),''''),\n    concat('SELECT * FROM ',item().SrcSchemaName,'.',item().SrcTableName))",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
-								"enableStaging": false
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
 							},
 							"inputs": [
 								{
-									"referenceName": "ds_sqlserver_source_adls_landing",
-									"type": "DatasetReference"
+									"referenceName": "ds_sqlserver_multiple_db_param",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsServername": "@item.SrcServerName",
+										"pDsDatabaseName": "@item.SrcDatabaseName",
+										"pDsSchemaName": "@item.SrcSchemaName",
+										"pDsTableName": "@item.SrcTableName"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_adls_clinical_param",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsContainerName": {
+											"value": "@item().LandingContainerName",
+											"type": "Expression"
+										},
+										"pDsFolderName": {
+											"value": "@concat(item().SrcSchemaName,'/',item().SrcTableName,'/\n    ingest_date=',formatDateTime(utcNow(),'yyyy-MM-dd'))\n    ",
+											"type": "Expression"
+										},
+										"pDsFileName": {
+											"value": "@concat(item().SrcTableName, '_',formatDateTime(utcNow(),\n        'yyyyMMddHHmmss'), '.parquet')\n        ",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						},
@@ -112,14 +163,35 @@
 									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
-								}
+								},
+								"dataset": {
+									"referenceName": "ds_sqlserver_multiple_db_param",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsServername": {
+											"value": "@item().SrcServerName",
+											"type": "Expression"
+										},
+										"pDsDatabaseName": {
+											"value": "@item().SrcDatabaseName",
+											"type": "Expression"
+										},
+										"pDsSchemaName": {
+											"value": "@item().SrcSchemaName",
+											"type": "Expression"
+										},
+										"pDsTableName": {
+											"value": "@item().SrcTableName",
+											"type": "Expression"
+										}
+									}
+								},
+								"firstRowOnly": false
 							}
 						},
 						{
 							"name": "Stored procedureUpdtMxModifiedDt",
 							"type": "SqlServerStoredProcedure",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "LookupGetMaxMetaData",
@@ -154,17 +226,26 @@
 										"type": "DateTime"
 									}
 								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_sqlserver_multiple_db",
+								"type": "LinkedServiceReference",
+								"parameters": {
+									"PlsServerName": {
+										"value": "@item().SrcServerName",
+										"type": "Expression"
+									},
+									"pLsDatabaseName": {
+										"value": "@item().SrcDatabaseName",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					]
 				}
 			}
 		],
-		"parameters": {
-			"pplTableName": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "dev_clintrail/SQLServerSrc_ADLSGen2Landing"
 		},
