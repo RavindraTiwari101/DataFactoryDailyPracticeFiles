@@ -3,20 +3,23 @@
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"parameters": {
-			"pDatabase": {
+			"PlsServerName": {
+				"type": "string"
+			},
+			"pLsDatabaseName": {
 				"type": "string"
 			}
 		},
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"server": "localhost\\SQLEXPRESS",
-			"database": "@{linkedService().pDatabase}",
+			"server": "@{linkedService().PlsServerName}",
+			"database": "@{linkedService().pLsDatabaseName}",
 			"encrypt": "optional",
 			"trustServerCertificate": false,
 			"authenticationType": "Windows",
 			"userName": "DESKTOP-TL1QLUE\\Aarav",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiMjUwOTZjNi1iZTA3LTRmZTYtOGM5MS01NjQ1YzZjMTA5NDciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4NzVhNmJkOS1kNzI0LTQ5ZjItOWUwYi1hOTllMDdjZjJiMzIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "shir-local-computer",
