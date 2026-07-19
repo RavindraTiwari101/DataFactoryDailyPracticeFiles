@@ -163,7 +163,30 @@
 									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
-								}
+								},
+								"dataset": {
+									"referenceName": "ds_sqlserver_multiple_db_param",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsServername": {
+											"value": "@item().srcServerName",
+											"type": "Expression"
+										},
+										"pDsDatabaseName": {
+											"value": "@item().SrcDatabaseName",
+											"type": "Expression"
+										},
+										"pDsSchemaName": {
+											"value": "@item().SrcSchemaName",
+											"type": "Expression"
+										},
+										"pDsTableName": {
+											"value": "@item().SrcTableName",
+											"type": "Expression"
+										}
+									}
+								},
+								"firstRowOnly": false
 							}
 						},
 						{
