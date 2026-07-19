@@ -20,12 +20,18 @@
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
+					"dataset": {
+						"referenceName": "ds_sqlserver_source_adls_landing",
+						"type": "DatasetReference"
+					},
 					"firstRowOnly": false
 				}
 			},
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "LookupSQLServerControlTable",
@@ -66,15 +72,17 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
-									"sqlReaderQuery": {
-										"value": "@if(equals(item().IngestionType,'Incremental'),\n    concat('SELECT * FROM ',item().SrcSchemaName,'.',item().SrcTableName,\n           ' WHERE ',coalesce(item().WatermarkColName,''),\n           ' > ''',coalesce(string(item().WatermarkColValue),''),''''),\n    concat('SELECT * FROM ',item().SrcSchemaName,'.',item().SrcTableName))",
-										"type": "Expression"
-									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
 								"enableStaging": false
-							}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_sqlserver_source_adls_landing",
+									"type": "DatasetReference"
+								}
+							]
 						},
 						{
 							"name": "LookupGetMaxMetaData",
@@ -110,6 +118,8 @@
 						{
 							"name": "Stored procedureUpdtMxModifiedDt",
 							"type": "SqlServerStoredProcedure",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "LookupGetMaxMetaData",
@@ -150,6 +160,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"pplTableName": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "dev_clintrail/SQLServerSrc_ADLSGen2Landing"
 		},

@@ -1,0 +1,42 @@
+{
+	"name": "ds_jsonfile_lookup_source_target",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_clintrail_dev28June",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Key_Value.json",
+				"folderPath": "parameterlookupfile",
+				"fileSystem": "cr-clintrail"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"SourceContainerName": {
+					"type": "string"
+				},
+				"SourceFolderPath": {
+					"type": "string"
+				},
+				"SourceFilename": {
+					"type": "string"
+				},
+				"TargetContainerName": {
+					"type": "string"
+				},
+				"TargetFolderPath": {
+					"type": "string"
+				},
+				"TargetFilename": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

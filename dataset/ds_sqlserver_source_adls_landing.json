@@ -1,0 +1,27 @@
+{
+	"name": "ds_sqlserver_source_adls_landing",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_source_sqlsever_landing",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"pSrcTable": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().pSrcTable",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().pSrcTable",
+				"type": "Expression"
+			}
+		}
+	}
+}

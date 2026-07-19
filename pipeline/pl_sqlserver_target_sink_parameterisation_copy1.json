@@ -1,0 +1,373 @@
+{
+	"name": "pl_sqlserver_target_sink_parameterisation_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_sqlserver_para",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ds_adls_sqlserver_source_target_mapping_json",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1_sqlserver123",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_sqlserver_para",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_sqlserver_para').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy_sqlserver_Sourcetable_Para_copy1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "SqlServerSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_sqlserver_sourcetable_parameter",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsSourceServerName": {
+											"value": "@item().SourceServerName",
+											"type": "Expression"
+										},
+										"pDsSourceDBName": {
+											"value": "@item().SourceDBName",
+											"type": "Expression"
+										},
+										"pDsSourceSchemaName": {
+											"value": "@item().SourceSchemaName",
+											"type": "Expression"
+										},
+										"pDsSourceTableName": {
+											"value": "@item().SourceTableName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_sqlserver_target_table_param",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsTargetservername": {
+											"value": "@item().TargetServerName",
+											"type": "Expression"
+										},
+										"pDsTargetDBName": {
+											"value": "@item().TargetDBName",
+											"type": "Expression"
+										},
+										"pDsTargetSchemaname": {
+											"value": "@item().TargetSchemaName",
+											"type": "Expression"
+										},
+										"pDsTargetTableName": {
+											"value": "@item().TargetTableName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Stored _rocedure_audit_log_table_success",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Copy_sqlserver_Sourcetable_Para_copy1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[Proc_df_audit_log_table_load]",
+								"storedProcedureParameters": {
+									"dfname": {
+										"value": {
+											"value": "@item().DataFactory",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"end_st_tm": {
+										"value": {
+											"value": "@utcNow()",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"err_msg": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.errors\r\n",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"exec_time": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.copyDuration\r\n",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"load_ts_tm": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.executionDetails.start",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"pl_id": {
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"pl_name": {
+										"value": {
+											"value": "@pipeline().Pipeline",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"src_read_rows": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.rowsRead",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"src_table_name": {
+										"value": {
+											"value": "@concat(item().SourceDatabasename,item().SourceDatabasename)\r\n\r\n",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"status": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.executionDetails.status",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"trg_table_name": {
+										"value": {
+											"value": "@concat(item().TargetDBName,item().TargetSchemaName,item().TargetTableName\r\n\r\n)",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"trg_write_rows": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.rowsCopied",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_sqlserver_healthconnect_raw",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "Stored _rocedure_audit_log_table_fail",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Copy_sqlserver_Sourcetable_Para_copy1",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[Proc_df_audit_log_table_load]",
+								"storedProcedureParameters": {
+									"dfname": {
+										"value": {
+											"value": "@pipeline().DataFactory",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"end_st_tm": {
+										"value": {
+											"value": "@utcNow()",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"err_msg": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.errors\r\n",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"exec_time": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.copyDuration\r\n",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"load_ts_tm": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.executionDetails.start",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"pl_id": {
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"pl_name": {
+										"value": {
+											"value": "@pipeline().Pipeline",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"src_read_rows": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.rowsRead",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"src_table_name": {
+										"value": {
+											"value": "@concat(item().SourceDatabasename,item().SourceDatabasename)\r\n\r\n",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"status": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.executionDetails.status",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"trg_table_name": {
+										"value": {
+											"value": "@concat(item().TargetDBName,item().TargetSchemaName,item().TargetTableName\r\n\r\n)",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"trg_write_rows": {
+										"value": {
+											"value": "@activity('Lookup_sqlserver_para').output.rowsCopied",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_sqlserver_healthconnect_raw",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			}
+		],
+		"folder": {
+			"name": "My Practice/27th June SqlParameter and Store procedure"
+		},
+		"annotations": []
+	}
+}
