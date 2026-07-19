@@ -5,14 +5,18 @@
 			"referenceName": "ls_sqlserver_multiple_db",
 			"type": "LinkedServiceReference",
 			"parameters": {
-				"pDatabase": {
-					"value": "@dataset().pDsSourceDatabase",
+				"PlsServerName": {
+					"value": "@dataset().pDsServername",
+					"type": "Expression"
+				},
+				"pLsDatabaseName": {
+					"value": "@dataset().pDsDatabaseName",
 					"type": "Expression"
 				}
 			}
 		},
 		"parameters": {
-			"pDsSourceDatabase": {
+			"pDsServername": {
 				"type": "string"
 			},
 			"pDsDatabaseName": {
@@ -27,6 +31,16 @@
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().pDsSchemaName",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().pDsTableName",
+				"type": "Expression"
+			}
+		}
 	}
 }

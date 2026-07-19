@@ -21,8 +21,14 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "ds_sqlserver_source_adls_landing",
-						"type": "DatasetReference"
+						"referenceName": "ds_sqlserver_multiple_db_param",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsServername": "localhost\\SQLEXPRESS",
+							"pDsDatabaseName": "dev_clintrail_edc_src",
+							"pDsSchemaName": "edcsrcmetadata",
+							"pDsTableName": "srcEdcClintrailToLandControl"
+						}
 					},
 					"firstRowOnly": false
 				}
@@ -161,7 +167,22 @@
 			}
 		],
 		"parameters": {
-			"pplTableName": {
+			"PplSourceServerName": {
+				"type": "string"
+			},
+			"PplSourceDBName": {
+				"type": "string"
+			},
+			"PplSourceTableName": {
+				"type": "string"
+			},
+			"PplTargetServerName": {
+				"type": "string"
+			},
+			"PplTargetDBName": {
+				"type": "string"
+			},
+			"PplTargetTableName": {
 				"type": "string"
 			}
 		},
