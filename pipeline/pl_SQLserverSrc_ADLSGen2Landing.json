@@ -66,11 +66,11 @@
 							"userProperties": [
 								{
 									"name": "Source",
-									"value": "@{item().SrcSchemaName}.@{item().SrcTableName}"
+									"value": "@{item.SrcSchemaName}.@{item.SrcTableName}"
 								},
 								{
 									"name": "Destination",
-									"value": "@{item().LandingContainerName}/@{concat(item().SrcSchemaName,'/',item().SrcTableName,'/ingest_date=',formatDateTime(utcNow(),'yyyy-MM-dd'))}/@{concat(item().SrcTableName, '_', formatDateTime(utcNow(),'yyyyMMddHHmmss'), '.parquet')}"
+									"value": "@{item().LandingContainerName}/@{concat(item().SrcSchemaName,'/',item().SrcTableName,'/\n    ingest_date=',formatDateTime(utcNow(),'yyyy-MM-dd'))\n    }/@{concat(item().SrcTableName, '_',formatDateTime(utcNow(),\n        'yyyyMMddHHmmss'), '.parquet')\n        }"
 								}
 							],
 							"typeProperties": {
