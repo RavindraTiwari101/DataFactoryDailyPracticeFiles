@@ -15,10 +15,13 @@
 			"pDsSourceDatabase": {
 				"type": "string"
 			},
-			"pDsSourceSchemaName": {
+			"pDsDatabaseName": {
 				"type": "string"
 			},
-			"pDssourceTableName": {
+			"pDsSchemaName": {
+				"type": "string"
+			},
+			"pDsTableName": {
 				"type": "string"
 			}
 		},
