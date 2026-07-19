@@ -166,26 +166,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"PplSourceServerName": {
-				"type": "string"
-			},
-			"PplSourceDBName": {
-				"type": "string"
-			},
-			"PplSourceTableName": {
-				"type": "string"
-			},
-			"PplTargetServerName": {
-				"type": "string"
-			},
-			"PplTargetDBName": {
-				"type": "string"
-			},
-			"PplTargetTableName": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "dev_clintrail/SQLServerSrc_ADLSGen2Landing"
 		},
