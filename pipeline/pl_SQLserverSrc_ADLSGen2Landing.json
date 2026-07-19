@@ -169,7 +169,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"pDsServername": {
-											"value": "@item().srcServerName",
+											"value": "@item().SrcServerName",
 											"type": "Expression"
 										},
 										"pDsDatabaseName": {
@@ -224,6 +224,20 @@
 											"type": "Expression"
 										},
 										"type": "DateTime"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_sqlserver_multiple_db",
+								"type": "LinkedServiceReference",
+								"parameters": {
+									"PlsServerName": {
+										"value": "@item().SrcServerName",
+										"type": "Expression"
+									},
+									"pLsDatabaseName": {
+										"value": "@item().SrcDatabaseName",
+										"type": "Expression"
 									}
 								}
 							}
