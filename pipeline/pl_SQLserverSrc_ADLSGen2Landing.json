@@ -198,7 +198,7 @@
 										}
 									}
 								},
-								"firstRowOnly": false
+								"firstRowOnly": true
 							}
 						},
 						{
