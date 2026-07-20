@@ -107,10 +107,22 @@
 									"referenceName": "ds_sqlserver_multiple_db_param",
 									"type": "DatasetReference",
 									"parameters": {
-										"pDsServername": "@item.SrcServerName",
-										"pDsDatabaseName": "@item.SrcDatabaseName",
-										"pDsSchemaName": "@item.SrcSchemaName",
-										"pDsTableName": "@item.SrcTableName"
+										"pDsServername": {
+											"value": "@item().SrcServerName",
+											"type": "Expression"
+										},
+										"pDsDatabaseName": {
+											"value": "@item().SrcDatabaseName",
+											"type": "Expression"
+										},
+										"pDsSchemaName": {
+											"value": "@item().SrcSchemaName",
+											"type": "Expression"
+										},
+										"pDsTableName": {
+											"value": "@item().SrcTableName",
+											"type": "Expression"
+										}
 									}
 								}
 							],
