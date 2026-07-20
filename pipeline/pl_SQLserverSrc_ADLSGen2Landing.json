@@ -136,7 +136,7 @@
 											"type": "Expression"
 										},
 										"pDsFolderName": {
-											"value": "@concat(item().SrcSchemaName,'/',item().SrcTableName,'/\n    ingest_date=',formatDateTime(utcNow(),'yyyy-MM-dd'))\n    ",
+											"value": "@concat(item().SrcSchemaName,'/',item().SrcTableName,'/\ningest_date=',formatDateTime(utcNow(),'yyyy-MM-dd'))\n    ",
 											"type": "Expression"
 										},
 										"pDsFileName": {
