@@ -77,7 +77,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@if(equals(item().IngestionType, 'Incremental'),\n    concat('SELECT * FROM ', item().SrcSchemaName,'.',item().SrcTableName,\n            'WHERE' ,coalesce(item().WatermarkColName,''),\n            ' > ''',coalesce(string(item().WatermarkColValue),''),''''),\n    concat('SELECT * FROM ',item().SrcSchemaName,'.',item().SrcTableName))",
+										"value": "@if(equals(item().IngestionType,'Incremental'),\n\n    concat('SELECT * FROM ',item().SrcSchemaName,'.',item().SrcTableName,\n\n           ' WHERE ',coalesce(item().WatermarkColName,''),\n\n           ' > ''',coalesce(string(item().WatermarkColValue),''),''''),\n\n    concat('SELECT * FROM ',item().SrcSchemaName,'.',item().SrcTableName))",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
