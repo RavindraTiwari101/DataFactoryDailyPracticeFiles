@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "DM123",
 				"folderPath": "Target/Customer",
 				"fileSystem": "cr-sink-clintrail"
 			},
