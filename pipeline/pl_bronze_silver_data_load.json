@@ -69,10 +69,8 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Copy data1",
-							"type": "Copy",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
+							"name": "Notebook_Domain_silver",
+							"type": "DatabricksNotebook",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
@@ -83,7 +81,45 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"enableStaging": false
+								"notebookPath": "/Users/raviytiwari101@gmail.com/Clintrial_Dev01/Clintrial_Dev/Clintrial_Bronze_Silver/nb_bronze_silver_load",
+								"baseParameters": {
+									"domain": {
+										"value": "@item().Domain",
+										"type": "Expression"
+									},
+									"srcCatalog": {
+										"value": "@item().SrcCatalog",
+										"type": "Expression"
+									},
+									"srcSchema": {
+										"value": "@item().SrcSchema",
+										"type": "Expression"
+									},
+									"srcTableName": {
+										"value": "@item().SrcTableName",
+										"type": "Expression"
+									},
+									"tgtCatalog": {
+										"value": "@item().TgtCatalog",
+										"type": "Expression"
+									},
+									"tgtSchema": {
+										"value": "@item().TgtSchema",
+										"type": "Expression"
+									},
+									"tgtTableName": {
+										"value": "@item().TgtTableName",
+										"type": "Expression"
+									},
+									"businessKey": {
+										"value": "@item().BusinessKey",
+										"type": "Expression"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_databricks_clintrial",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
