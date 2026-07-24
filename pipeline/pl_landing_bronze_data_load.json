@@ -36,8 +36,6 @@
 			{
 				"name": "ForEach_Landing_File",
 				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Lookup_Bronze_Control_Table",
@@ -56,6 +54,8 @@
 						{
 							"name": "Notebook_landing_bronze",
 							"type": "DatabricksNotebook",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
