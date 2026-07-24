@@ -30,7 +30,7 @@
 							"pDsSourceTableName": "srcEdcLandToBronzeControl"
 						}
 					},
-					"firstRowOnly": true
+					"firstRowOnly": false
 				}
 			},
 			{
