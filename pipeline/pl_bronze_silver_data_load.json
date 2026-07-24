@@ -48,6 +48,26 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "ForEach_Domain_Table",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_bronze_silver_control_tab",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_bronze_silver_control_tab').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true
+				}
 			}
 		],
 		"parameters": {
