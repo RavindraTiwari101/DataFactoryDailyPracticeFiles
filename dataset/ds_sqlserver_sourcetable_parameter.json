@@ -2,14 +2,14 @@
 	"name": "ds_sqlserver_sourcetable_parameter",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_sqlserver_param",
+			"referenceName": "ls_sqlserver_multiple_db",
 			"type": "LinkedServiceReference",
 			"parameters": {
-				"pLsServerName": {
+				"PlsServerName": {
 					"value": "@dataset().pDsSourceServerName",
 					"type": "Expression"
 				},
-				"pLsDBName": {
+				"pLsDatabaseName": {
 					"value": "@dataset().pDsSourceDBName",
 					"type": "Expression"
 				}
