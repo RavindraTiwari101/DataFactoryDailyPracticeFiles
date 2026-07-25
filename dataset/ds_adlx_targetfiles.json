@@ -10,9 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "digo2025.csv",
-				"folderPath": "Targetfiles",
-				"fileSystem": "cr-clintrail"
+				"folderPath": "Target/Customer",
+				"fileSystem": "cr-sink-clintrail"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
