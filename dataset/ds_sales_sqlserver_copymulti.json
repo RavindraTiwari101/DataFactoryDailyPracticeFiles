@@ -27,8 +27,14 @@
 		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "Clean_sales"
+			"schema": {
+				"value": "@dataset().pPlSchemaName",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().pPlTableName",
+				"type": "Expression"
+			}
 		}
 	}
 }
