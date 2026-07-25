@@ -5,6 +5,24 @@
 			"referenceName": "ls_sqlserver_healthconnect_raw",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"pPlServerName": {
+				"type": "string",
+				"defaultValue": "localhost\\SQLEXPRESS"
+			},
+			"pPlDataBaseName": {
+				"type": "string",
+				"defaultValue": "dev_clintrail_edc_src"
+			},
+			"pPlSchemaName": {
+				"type": "string",
+				"defaultValue": "edcsrcmetadata"
+			},
+			"pPlTableName": {
+				"type": "string",
+				"defaultValue": "srcEdcSilverToGoldControl"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [],

@@ -1,0 +1,72 @@
+{
+	"name": "pl_silver_gold_dim_data_load",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_Silver_Gold",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": {
+							"value": "@concat('select * from [', pipeline().parameters.pDsSchemaName,\n        '],[', pipeline().parameters.pDsTableName,\n        '] where EntityType = ''dimension''')",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_sales_sqlserver_copymulti",
+						"type": "DatasetReference",
+						"parameters": {
+							"pPlServerName": {
+								"value": "@pipeline().parameters.pDsServername",
+								"type": "Expression"
+							},
+							"pPlDataBaseName": {
+								"value": "@pipeline().parameters.pDsDatabaseName",
+								"type": "Expression"
+							},
+							"pPlSchemaName": {
+								"value": "@pipeline().parameters.pDsSchemaName",
+								"type": "Expression"
+							},
+							"pPlTableName": {
+								"value": "@pipeline().parameters.pDsTableName",
+								"type": "Expression"
+							}
+						}
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"parameters": {
+			"pDsServername": {
+				"type": "string"
+			},
+			"pDsDatabaseName": {
+				"type": "string"
+			},
+			"pDsSchemaName": {
+				"type": "string"
+			},
+			"pDsTableName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "dev_clintrail/Silver_Gold_Dim_load"
+		},
+		"annotations": []
+	}
+}
