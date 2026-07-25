@@ -17,16 +17,20 @@
 		},
 		"parameters": {
 			"pDsServername": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "localhost\\SQLEXPRESS"
 			},
 			"pDsDatabaseName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "dev_clintrail_edc_src"
 			},
 			"pDsSchemaName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "edcsrcmetadata"
 			},
 			"pDsTableName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "srcEdcSilverToGoldControl"
 			}
 		},
 		"annotations": [],
