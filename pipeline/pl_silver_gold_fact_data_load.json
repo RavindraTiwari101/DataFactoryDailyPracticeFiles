@@ -83,6 +83,10 @@
 							"typeProperties": {
 								"notebookPath": "/Users/raviytiwari101@gmail.com/Clintrial_Dev01/Clintrial_Dev/Clintrial_Silver_Gold/nb_gold_facts",
 								"baseParameters": {
+									"entityName": {
+										"value": "@item().EntityName",
+										"type": "Expression"
+									},
 									"srcCatalog": {
 										"value": "@item().SrcCatalog",
 										"type": "Expression"
@@ -107,8 +111,8 @@
 										"value": "@item().TgtTableName",
 										"type": "Expression"
 									},
-									"scdType": {
-										"value": "@item().ScdType",
+									"entityType": {
+										"value": "@item().EntityType",
 										"type": "Expression"
 									},
 									"businessKey": {
