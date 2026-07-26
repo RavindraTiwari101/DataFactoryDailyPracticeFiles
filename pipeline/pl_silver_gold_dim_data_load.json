@@ -1,0 +1,152 @@
+{
+	"name": "pl_silver_gold_dim_data_load",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_Silver_Gold",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": {
+							"value": "@concat('SELECT * FROM [', pipeline().parameters.pDsSchemaName,\n        '].[', pipeline().parameters.pDsTableName,\n        '] where entityType = ''dimension''')",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_sales_sqlserver_copymulti",
+						"type": "DatasetReference",
+						"parameters": {
+							"pPlServerName": {
+								"value": "@pipeline().parameters.pDsServername",
+								"type": "Expression"
+							},
+							"pPlDataBaseName": {
+								"value": "@pipeline().parameters.pDsDatabaseName",
+								"type": "Expression"
+							},
+							"pPlSchemaName": {
+								"value": "@pipeline().parameters.pDsSchemaName",
+								"type": "Expression"
+							},
+							"pPlTableName": {
+								"value": "@pipeline().parameters.pDsTableName",
+								"type": "Expression"
+							}
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach_Silver_gold_dim",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_Silver_Gold",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_Silver_Gold').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Notebook_silver_gold_dim",
+							"type": "DatabricksNotebook",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 3,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Users/raviytiwari101@gmail.com/Clintrial_Dev01/Clintrial_Dev/Clintrial_Silver_Gold/nb_gold_dimensions",
+								"baseParameters": {
+									"srcCatalog": {
+										"value": "@item().SrcCatalog",
+										"type": "Expression"
+									},
+									"srcSchema": {
+										"value": "@item().SrcSchema",
+										"type": "Expression"
+									},
+									"srcTableName": {
+										"value": "@item().SrcTableName",
+										"type": "Expression"
+									},
+									"tgtCatalog": {
+										"value": "@item().TgtCatalog",
+										"type": "Expression"
+									},
+									"tgtSchema": {
+										"value": "@item().TgtSchema",
+										"type": "Expression"
+									},
+									"tgtTableName": {
+										"value": "@item().TgtTableName",
+										"type": "Expression"
+									},
+									"scdType": {
+										"value": "@item().ScdType",
+										"type": "Expression"
+									},
+									"businessKey": {
+										"value": "@item().BusinessKey",
+										"type": "Expression"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_databricks_clintrial",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"pDsServername": {
+				"type": "string",
+				"defaultValue": "localhost\\SQLEXPRESS"
+			},
+			"pDsDatabaseName": {
+				"type": "string",
+				"defaultValue": "dev_clintrail_edc_src"
+			},
+			"pDsSchemaName": {
+				"type": "string",
+				"defaultValue": "edcsrcmetadata"
+			},
+			"pDsTableName": {
+				"type": "string",
+				"defaultValue": "srcEdcSilverToGoldControl"
+			}
+		},
+		"folder": {
+			"name": "dev_clintrail/Silver_Gold_Dim_load"
+		},
+		"annotations": []
+	}
+}
